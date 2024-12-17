@@ -34,7 +34,8 @@ public enum ComponentType {
     FLOW_ANALYSIS_RULE("Flow Analysis Rule"),
     PARAMETER_CONTEXT("Parameter Context"),
     PARAMETER_PROVIDER("Parameter Provider"),
-    FLOW_REGISTRY_CLIENT("Flow Registry Client");
+    FLOW_REGISTRY_CLIENT("Flow Registry Client"),
+    EXTENSION_REGISTRY_CLIENT("Extension Registry Client");
 
 
     private final String typeName;

@@ -14,20 +14,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.nifi.documentation;
+package org.apache.nifi.registry.extension;
 
-public enum ExtensionType {
-    PROCESSOR,
+/**
+ * Indicates an error interacting with the extension registry for a reason other
+ * than IOException.
+ */
+public class ExtensionRegistryException extends Exception {
 
-    CONTROLLER_SERVICE,
+    public ExtensionRegistryException(final String message) {
+        super(message);
+    }
 
-    REPORTING_TASK,
-
-    FLOW_ANALYSIS_RULE,
-
-    PARAMETER_PROVIDER,
-
-    FLOW_REGISTRY_CLIENT,
-
-    EXTENSION_REGISTRY_CLIENT;
+    public ExtensionRegistryException(final String message, final Throwable cause) {
+        super(message, cause);
+    }
 }

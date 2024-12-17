@@ -28,6 +28,7 @@ import java.lang.annotation.Target;
  * Marker annotation a {@link org.apache.nifi.processor.Processor Processor},
  * {@link org.apache.nifi.controller.ControllerService ControllerService},
  * {@link org.apache.nifi.registry.flow.FlowRegistryClient FlowRegistryClient},
+ * {@link org.apache.nifi.registry.extension.ExtensionRegistryClient ExtensionRegistryClient},
  * {@link org.apache.nifi.parameter.ParameterProvider ParameterProvider},
  * {@link org.apache.nifi.flowanalysis.FlowAnalysisRule FlowAnalysisRule}, or
  * {@link org.apache.nifi.reporting.ReportingTask ReportingTask} implementation

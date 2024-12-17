@@ -14,20 +14,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.nifi.documentation;
+package org.apache.nifi.registry.extension;
 
-public enum ExtensionType {
-    PROCESSOR,
+import org.apache.nifi.logging.ComponentLog;
 
-    CONTROLLER_SERVICE,
+import javax.net.ssl.SSLContext;
+import java.util.Optional;
 
-    REPORTING_TASK,
+public interface ExtensionRegistryClientInitializationContext {
 
-    FLOW_ANALYSIS_RULE,
+    String getIdentifier();
 
-    PARAMETER_PROVIDER,
+    ComponentLog getLogger();
 
-    FLOW_REGISTRY_CLIENT,
-
-    EXTENSION_REGISTRY_CLIENT;
+    Optional<SSLContext> getSystemSslContext();
 }

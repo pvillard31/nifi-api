@@ -25,14 +25,20 @@ public class Bundle {
     private String group;
     private String artifact;
     private String version;
+    private boolean isRemote;
+    private String dependencyGroup;
+    private String dependencyArtifact;
+    private String dependencyVersion;
+    private String systemApiVersion;
 
     public Bundle() {
     }
 
-    public Bundle(final String group, final String artifact, final String version) {
+    public Bundle(final String group, final String artifact, final String version, final boolean isRemote) {
         this.group = group;
         this.artifact = artifact;
         this.version = version;
+        this.isRemote = isRemote;
     }
 
     @Schema(description = "The group of the bundle")
@@ -60,6 +66,51 @@ public class Bundle {
 
     public void setVersion(String version) {
         this.version = version;
+    }
+
+    @Schema(description = "If the bundle is currently remote or not")
+    public boolean isRemote() {
+        return isRemote;
+    }
+
+    public void setRemote(boolean isRemote) {
+        this.isRemote = isRemote;
+    }
+
+    @Schema(description = "If present, the group of the bundle this bundle depends on (Nar-Dependency-Group).")
+    public String getDependencyGroup() {
+        return dependencyGroup;
+    }
+
+    public void setDependencyGroup(String dependencyGroup) {
+        this.dependencyGroup = dependencyGroup;
+    }
+
+    @Schema(description = "If present, the artifact of the bundle this bundle depends on (Nar-Dependency-Id).")
+    public String getDependencyArtifact() {
+        return dependencyArtifact;
+    }
+
+    public void setDependencyArtifact(String dependencyArtifact) {
+        this.dependencyArtifact = dependencyArtifact;
+    }
+
+    @Schema(description = "If present, the version of the bundle this bundle depends on (Nar-Dependency-Version).")
+    public String getDependencyVersion() {
+        return dependencyVersion;
+    }
+
+    public void setDependencyVersion(String dependencyVersion) {
+        this.dependencyVersion = dependencyVersion;
+    }
+
+    @Schema(description = "The NiFi system API version this bundle targets, as declared in the extension manifest.")
+    public String getSystemApiVersion() {
+        return systemApiVersion;
+    }
+
+    public void setSystemApiVersion(String systemApiVersion) {
+        this.systemApiVersion = systemApiVersion;
     }
 
     @Override

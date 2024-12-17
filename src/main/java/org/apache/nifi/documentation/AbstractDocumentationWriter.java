@@ -48,6 +48,7 @@ import org.apache.nifi.controller.ControllerService;
 import org.apache.nifi.documentation.init.DocumentationControllerServiceInitializationContext;
 import org.apache.nifi.documentation.init.DocumentationFlowAnalysisRuleInitializationContext;
 import org.apache.nifi.documentation.init.DocumentationFlowRegistryClientInitializationContext;
+import org.apache.nifi.documentation.init.DocumentationExtensionRegistryClientInitializationContext;
 import org.apache.nifi.documentation.init.DocumentationParameterProviderInitializationContext;
 import org.apache.nifi.documentation.init.DocumentationProcessorInitializationContext;
 import org.apache.nifi.documentation.init.DocumentationReportingInitializationContext;
@@ -58,6 +59,7 @@ import org.apache.nifi.processor.Relationship;
 import org.apache.nifi.reporting.InitializationException;
 import org.apache.nifi.reporting.ReportingTask;
 import org.apache.nifi.registry.flow.FlowRegistryClient;
+import org.apache.nifi.registry.extension.ExtensionRegistryClient;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -99,6 +101,8 @@ public abstract class AbstractDocumentationWriter implements ExtensionDocumentat
                 initialize((ParameterProvider) component);
             } else if (component instanceof FlowRegistryClient) {
                 initialize((FlowRegistryClient) component);
+            } else if (component instanceof ExtensionRegistryClient) {
+                initialize((ExtensionRegistryClient) component);
             }
         } catch (final InitializationException ie) {
             throw new RuntimeException("Failed to initialize " + component, ie);
@@ -127,6 +131,10 @@ public abstract class AbstractDocumentationWriter implements ExtensionDocumentat
 
     protected void initialize(final FlowRegistryClient flowRegistryClient) {
         flowRegistryClient.initialize(new DocumentationFlowRegistryClientInitializationContext());
+    }
+
+    protected void initialize(final ExtensionRegistryClient extensionRegistryClient) {
+        extensionRegistryClient.initialize(new DocumentationExtensionRegistryClientInitializationContext());
     }
 
     @Override
@@ -306,6 +314,9 @@ public abstract class AbstractDocumentationWriter implements ExtensionDocumentat
         }
         if (component instanceof FlowRegistryClient) {
             return ExtensionType.FLOW_REGISTRY_CLIENT;
+        }
+        if (component instanceof ExtensionRegistryClient) {
+            return ExtensionType.EXTENSION_REGISTRY_CLIENT;
         }
         throw new AssertionError("Encountered unknown Configurable Component Type for " + component);
     }

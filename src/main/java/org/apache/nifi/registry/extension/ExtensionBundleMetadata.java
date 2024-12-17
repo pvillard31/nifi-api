@@ -14,20 +14,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.nifi.documentation;
+package org.apache.nifi.registry.extension;
 
-public enum ExtensionType {
-    PROCESSOR,
+import org.apache.nifi.flow.Bundle;
 
-    CONTROLLER_SERVICE,
+import java.io.InputStream;
 
-    REPORTING_TASK,
+/**
+ * Metadata about a remotely available bundle, including its dependency coordinate and manifest contents.
+ * Implementations may choose to lazily stream the manifest InputStream; callers are responsible for closing it.
+ */
+public interface ExtensionBundleMetadata {
 
-    FLOW_ANALYSIS_RULE,
+    /**
+     * @return the bundle coordinates (including dependency if populated)
+     */
+    Bundle getBundle();
 
-    PARAMETER_PROVIDER,
-
-    FLOW_REGISTRY_CLIENT,
-
-    EXTENSION_REGISTRY_CLIENT;
+    /**
+     * @return InputStream for the extension manifest (META-INF/docs/extension-manifest.xml). Caller must close.
+     */
+    InputStream getExtensionManifest();
 }
+
