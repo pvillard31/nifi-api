@@ -247,6 +247,8 @@ public final class PropertyDescriptor implements Comparable<PropertyDescriptor> 
          *
          * @param displayName of the property
          * @return the builder
+         * @deprecated only {@link #name(String)} should be used - this method will
+         *             be removed in the next major release
          */
         public Builder displayName(final String displayName) {
             if (null != displayName) {
