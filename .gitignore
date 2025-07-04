@@ -12,6 +12,7 @@ nb-configuration.xml
 .DS_Store
 .metadata
 .recommenders
+.checkstyle
 *.iml
 *.iws
 *.ipr
