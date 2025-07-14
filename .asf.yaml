@@ -18,7 +18,6 @@ github:
   protected_branches:
     main:
       required_signatures: true
-      required_linear_history: true
   protected_tags:
     - "nifi-api-*"
 notifications:
