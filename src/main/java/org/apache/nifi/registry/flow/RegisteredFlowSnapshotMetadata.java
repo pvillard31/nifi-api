@@ -17,9 +17,12 @@
 package org.apache.nifi.registry.flow;
 
 public class RegisteredFlowSnapshotMetadata {
+    private String registryIdentifier;
+    private String registryName;
     private String branch;
     private String bucketIdentifier;
     private String flowIdentifier;
+    private String flowName;
     private String version;
     private long timestamp;
     private String author;
@@ -79,5 +82,29 @@ public class RegisteredFlowSnapshotMetadata {
 
     public void setComments(String comments) {
         this.comments = comments;
+    }
+
+    public String getFlowName() {
+        return flowName;
+    }
+
+    public void setFlowName(String flowName) {
+        this.flowName = flowName;
+    }
+
+    public String getRegistryName() {
+        return registryName;
+    }
+
+    public void setRegistryName(String registryName) {
+        this.registryName = registryName;
+    }
+
+    public String getRegistryIdentifier() {
+        return registryIdentifier;
+    }
+
+    public void setRegistryIdentifier(String registryIdentifier) {
+        this.registryIdentifier = registryIdentifier;
     }
 }
