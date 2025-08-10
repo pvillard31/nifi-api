@@ -17,10 +17,11 @@
 
 package org.apache.nifi.components.state;
 
-import java.io.IOException;
-import java.util.Map;
 import org.apache.nifi.annotation.behavior.Stateful;
 import org.apache.nifi.components.state.exception.StateTooLargeException;
+
+import java.io.IOException;
+import java.util.Map;
 
 /**
  * <p>
@@ -98,4 +99,15 @@ public interface StateManager {
      * @throws IOException if unable to communicate with the underlying storage mechanism
      */
     void clear(Scope scope) throws IOException;
+
+    /**
+     * Indicates whether the underlying provider supports removing individual keys.
+     * Dropping keys is not supported by default. It can be enabled for components
+     * with CLUSTER scope only via the Stateful annotation.
+     *
+     * @return true if dropping state keys is supported
+     */
+    default boolean isStateKeyDropSupported() {
+        return false;
+    }
 }
