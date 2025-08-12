@@ -178,8 +178,8 @@ public class VersionedProcessor extends VersionedConfigurableExtension {
     }
 
     @Schema(
-            description = "Determines whether the FlowFile should be penalized or the processor should be yielded between retries.",
-            allowableValues = "PENALIZE_FLOWFILE, YIELD_PROCESSOR"
+            description = "Determines whether the FlowFile should be penalized or the processor should be yielded between retries. "
+                    + "Possible returned values: PENALIZE_FLOWFILE, YIELD_PROCESSOR."
     )
     public String getBackoffMechanism() {
         return backoffMechanism;

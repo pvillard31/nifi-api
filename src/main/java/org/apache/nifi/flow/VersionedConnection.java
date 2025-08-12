@@ -17,10 +17,10 @@
 
 package org.apache.nifi.flow;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import java.util.List;
 import java.util.Set;
-
-import io.swagger.v3.oas.annotations.media.Schema;
 
 public class VersionedConnection extends VersionedComponent {
     private ConnectableComponent source;
@@ -136,8 +136,8 @@ public class VersionedConnection extends VersionedComponent {
         this.prioritizers = prioritizers;
     }
 
-    @Schema(description = "The Strategy to use for load balancing data across the cluster, or null, if no Load Balance Strategy has been specified.",
-            allowableValues = "DO_NOT_LOAD_BALANCE, PARTITION_BY_ATTRIBUTE, ROUND_ROBIN, SINGLE_NODE")
+    @Schema(description = "The Strategy to use for load balancing data across the cluster, or null, if no Load Balance Strategy has been specified. "
+            + "Possible returned values: DO_NOT_LOAD_BALANCE, PARTITION_BY_ATTRIBUTE, ROUND_ROBIN, SINGLE_NODE. See LoadBalanceStrategy.class for more details.")
     public String getLoadBalanceStrategy() {
         return loadBalanceStrategy;
     }
@@ -157,8 +157,8 @@ public class VersionedConnection extends VersionedComponent {
         this.partitioningAttribute = partitioningAttribute;
     }
 
-    @Schema(description = "Whether or not compression should be used when transferring FlowFiles between nodes",
-            allowableValues = "DO_NOT_COMPRESS, COMPRESS_ATTRIBUTES_ONLY, COMPRESS_ATTRIBUTES_AND_CONTENT")
+    @Schema(description = "Whether or not compression should be used when transferring FlowFiles between nodes "
+            + "Possible returned values: DO_NOT_COMPRESS, COMPRESS_ATTRIBUTES_ONLY, COMPRESS_ATTRIBUTES_AND_CONTENT. See LoadBalanceCompression.class for more details.")
     public String getLoadBalanceCompression() {
         return loadBalanceCompression;
     }

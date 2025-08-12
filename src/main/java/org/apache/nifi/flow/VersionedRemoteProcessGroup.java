@@ -70,7 +70,7 @@ public class VersionedRemoteProcessGroup extends VersionedComponent {
         this.yieldDuration = yieldDuration;
     }
 
-    @Schema(description = "The Transport Protocol that is used for Site-to-Site communications", allowableValues = "RAW, HTTP")
+    @Schema(description = "The Transport Protocol that is used for Site-to-Site communications. Possible returned values: RAW, HTTP.")
     public String getTransportProtocol() {
         return transportProtocol;
     }
