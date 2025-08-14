@@ -59,7 +59,6 @@ public @interface Stateful {
     /**
      * Indicates whether the component supports dropping a specific state key when
      * the API to clear the state of the component is being called. This should be
-     * used only if the component's state is with the CLUSTER scope and it should be
      * used with caution as it can lead to inconsistent state across the cluster if
      * not handled properly in the component's code.
      *
