@@ -103,7 +103,7 @@ public interface StateManager {
     /**
      * Indicates whether the underlying provider supports removing individual keys.
      * Dropping keys is not supported by default. It can be enabled for components
-     * with CLUSTER scope only via the Stateful annotation.
+     * via the Stateful annotation.
      *
      * @return true if dropping state keys is supported
      */
