@@ -17,14 +17,15 @@
 
 package org.apache.nifi.annotation.behavior;
 
+import org.apache.nifi.components.state.Scope;
+import org.apache.nifi.components.state.StateManager;
+
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-import org.apache.nifi.components.state.Scope;
-import org.apache.nifi.components.state.StateManager;
 
 /**
  * <p>
@@ -54,4 +55,14 @@ public @interface Stateful {
      * @return Array of scopes for information stored
      */
     Scope[] scopes();
+
+    /**
+     * Indicates whether the component supports dropping a specific state key when
+     * the API to clear the state of the component is being called. This should be
+     * used with caution as it can lead to inconsistent state across the cluster if
+     * not handled properly in the component's code.
+     *
+     * @return true if dropping specific state keys is supported, false otherwise
+     */
+    boolean dropStateKeySupported() default false;
 }
