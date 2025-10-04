@@ -14,18 +14,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.nifi.documentation;
+package org.apache.nifi.documentation.init;
 
-public enum ExtensionType {
-    PROCESSOR,
+import org.apache.nifi.logging.ComponentLog;
+import org.apache.nifi.registry.flow.FlowRegistryClientInitializationContext;
 
-    CONTROLLER_SERVICE,
+import javax.net.ssl.SSLContext;
+import java.util.Optional;
+import java.util.UUID;
 
-    REPORTING_TASK,
+public class DocumentationFlowRegistryClientInitializationContext implements FlowRegistryClientInitializationContext {
+    private final String identifier = UUID.randomUUID().toString();
+    private final ComponentLog componentLog = new NopComponentLog();
 
-    FLOW_ANALYSIS_RULE,
+    @Override
+    public String getIdentifier() {
+        return identifier;
+    }
 
-    PARAMETER_PROVIDER,
+    @Override
+    public ComponentLog getLogger() {
+        return componentLog;
+    }
 
-    FLOW_REGISTRY_CLIENT;
+    @Override
+    public Optional<SSLContext> getSystemSslContext() {
+        return Optional.empty();
+    }
 }
