@@ -47,6 +47,7 @@ import org.apache.nifi.components.PropertyDescriptor;
 import org.apache.nifi.controller.ControllerService;
 import org.apache.nifi.documentation.init.DocumentationControllerServiceInitializationContext;
 import org.apache.nifi.documentation.init.DocumentationFlowAnalysisRuleInitializationContext;
+import org.apache.nifi.documentation.init.DocumentationFlowRegistryClientInitializationContext;
 import org.apache.nifi.documentation.init.DocumentationParameterProviderInitializationContext;
 import org.apache.nifi.documentation.init.DocumentationProcessorInitializationContext;
 import org.apache.nifi.documentation.init.DocumentationReportingInitializationContext;
@@ -56,6 +57,7 @@ import org.apache.nifi.processor.Processor;
 import org.apache.nifi.processor.Relationship;
 import org.apache.nifi.reporting.InitializationException;
 import org.apache.nifi.reporting.ReportingTask;
+import org.apache.nifi.registry.flow.FlowRegistryClient;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -95,6 +97,8 @@ public abstract class AbstractDocumentationWriter implements ExtensionDocumentat
                 initialize((FlowAnalysisRule) component);
             } else if (component instanceof ParameterProvider) {
                 initialize((ParameterProvider) component);
+            } else if (component instanceof FlowRegistryClient) {
+                initialize((FlowRegistryClient) component);
             }
         } catch (final InitializationException ie) {
             throw new RuntimeException("Failed to initialize " + component, ie);
@@ -119,6 +123,10 @@ public abstract class AbstractDocumentationWriter implements ExtensionDocumentat
 
     protected void initialize(final ParameterProvider parameterProvider) throws InitializationException {
         parameterProvider.initialize(new DocumentationParameterProviderInitializationContext());
+    }
+
+    protected void initialize(final FlowRegistryClient flowRegistryClient) {
+        flowRegistryClient.initialize(new DocumentationFlowRegistryClientInitializationContext());
     }
 
     @Override
@@ -295,6 +303,9 @@ public abstract class AbstractDocumentationWriter implements ExtensionDocumentat
         }
         if (component instanceof ParameterProvider) {
             return ExtensionType.PARAMETER_PROVIDER;
+        }
+        if (component instanceof FlowRegistryClient) {
+            return ExtensionType.FLOW_REGISTRY_CLIENT;
         }
         throw new AssertionError("Encountered unknown Configurable Component Type for " + component);
     }
