@@ -77,14 +77,14 @@
         <minimalJavaBuildVersion>21</minimalJavaBuildVersion>
         <minimalMavenBuildVersion>3.9.11</minimalMavenBuildVersion>
 
-        <checkstyle.version>10.26.1</checkstyle.version>
-        <junit-bom.version>5.13.2</junit-bom.version>
+        <checkstyle.version>11.1.0</checkstyle.version>
+        <junit-bom.version>6.0.0</junit-bom.version>
         <jacoco.version>0.8.13</jacoco.version>
         <maven-pmd-plugin.version>3.27.0</maven-pmd-plugin.version>
         <version.maven-checkstyle-plugin>3.6.0</version.maven-checkstyle-plugin>
-        <mockito.version>5.18.0</mockito.version>
-        <pmd.version>7.14.0</pmd.version>
-        <swagger-annotations.version>2.2.34</swagger-annotations.version>
+        <mockito.version>5.20.0</mockito.version>
+        <pmd.version>7.17.0</pmd.version>
+        <swagger-annotations.version>2.2.38</swagger-annotations.version>
     </properties>
 
     <dependencyManagement>
