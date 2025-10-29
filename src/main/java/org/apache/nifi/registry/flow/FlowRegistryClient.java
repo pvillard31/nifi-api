@@ -129,13 +129,13 @@ public interface FlowRegistryClient extends ConfigurableComponent {
      * @param context Configuration context
      * @param sourceLocation The location of the flow version that will act as the source for the new branch. The version may be {@code null}
      *                       to indicate that the registry implementation should select a default, such as the latest version on the source branch.
-     * @param newBranchName The name of the branch to create
+     * @param branchName The name of the branch to create
      *
      * @throws FlowRegistryException If an issue happens during processing the request.
      * @throws IOException If there is issue with the communication between NiFi and the Flow Registry.
      * @throws UnsupportedOperationException If the registry does not support branching.
      */
-    default void createBranch(final FlowRegistryClientConfigurationContext context, final FlowVersionLocation sourceLocation, final String newBranchName)
+    default void createBranch(final FlowRegistryClientConfigurationContext context, final FlowVersionLocation sourceLocation, final String branchName)
             throws FlowRegistryException, IOException {
         throw new UnsupportedOperationException("Branch creation is not supported by this Flow Registry Client");
     }
