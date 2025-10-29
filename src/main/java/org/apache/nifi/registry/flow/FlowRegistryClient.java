@@ -135,7 +135,7 @@ public interface FlowRegistryClient extends ConfigurableComponent {
      * @throws IOException If there is issue with the communication between NiFi and the Flow Registry.
      * @throws UnsupportedOperationException If the registry does not support branching.
      */
-    default void createBranch(final FlowRegistryClientConfigurationContext context, final FlowVersionLocation sourceLocation, final String branchName)
+    default void createBranch(FlowRegistryClientConfigurationContext context, FlowVersionLocation sourceLocation, String branchName)
             throws FlowRegistryException, IOException {
         throw new UnsupportedOperationException("Branch creation is not supported by this Flow Registry Client");
     }
