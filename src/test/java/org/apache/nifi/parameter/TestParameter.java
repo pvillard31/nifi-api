@@ -175,6 +175,59 @@ public class TestParameter {
         assertEquals(0, parameter.getReferencedAssets().size());
     }
 
+    @Test
+    public void testCreateParameterWithTags() {
+        final List<ParameterTag> tags = List.of(
+            new ParameterTag("environment", "production"),
+            new ParameterTag("sensitive", "false")
+        );
+
+        final Parameter parameter = new Parameter.Builder()
+            .name("A")
+            .value("value")
+            .tags(tags)
+            .build();
+
+        assertEquals("A", parameter.getDescriptor().getName());
+        assertEquals("value", parameter.getValue());
+        assertNotNull(parameter.getTags());
+        assertEquals(2, parameter.getTags().size());
+        assertEquals("environment", parameter.getTags().get(0).getKey());
+        assertEquals("production", parameter.getTags().get(0).getValue());
+        assertEquals("sensitive", parameter.getTags().get(1).getKey());
+        assertEquals("false", parameter.getTags().get(1).getValue());
+    }
+
+    @Test
+    public void testCreateParameterWithoutTags() {
+        final Parameter parameter = new Parameter.Builder()
+            .name("A")
+            .value("value")
+            .build();
+
+        assertNotNull(parameter.getTags());
+        assertTrue(parameter.getTags().isEmpty());
+    }
+
+    @Test
+    public void testCreateParameterFromOtherWithTags() {
+        final List<ParameterTag> tags = List.of(new ParameterTag("key", "value"));
+
+        final Parameter original = new Parameter.Builder()
+            .name("A")
+            .value("value")
+            .tags(tags)
+            .build();
+
+        final Parameter parameter = new Parameter.Builder()
+            .fromParameter(original)
+            .build();
+
+        assertEquals(1, parameter.getTags().size());
+        assertEquals("key", parameter.getTags().getFirst().getKey());
+        assertEquals("value", parameter.getTags().getFirst().getValue());
+    }
+
     private static class MockAsset implements Asset {
         private final String identifier;
         private final String parameterContextIdentifier;
