@@ -17,6 +17,7 @@
 package org.apache.nifi.registry.flow;
 
 import org.apache.nifi.components.ConfigurableComponent;
+import org.apache.nifi.migration.PropertyConfiguration;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -282,6 +283,23 @@ public interface FlowRegistryClient extends ConfigurableComponent {
      */
     default String generateFlowId(final String flowName) {
         return UUID.randomUUID().toString();
+    }
+
+    /**
+     * <p>
+     * Allows for the migration of an old property configuration to a new configuration. This allows the Flow Registry Client to evolve over time,
+     * as it allows properties to be renamed, removed, or reconfigured.
+     * </p>
+     *
+     * <p>
+     * This method is called only when a Flow Registry Client is restored from a previous configuration. For example, when NiFi is restarted and the
+     * flow is restored from disk, or when a node joins a cluster and inherits a flow that has a new Flow Registry Client. Once called, the method
+     * will not be invoked again for this Flow Registry Client until NiFi is restarted.
+     * </p>
+     *
+     * @param config the current property configuration
+     */
+    default void migrateProperties(PropertyConfiguration config) {
     }
 
 }
