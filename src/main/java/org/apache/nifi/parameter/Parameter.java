@@ -29,6 +29,7 @@ public class Parameter {
     private final String parameterContextId;
     private final boolean provided;
     private final List<Asset> referencedAssets;
+    private final List<ParameterTag> tags;
 
     private Parameter(final Builder builder) {
         this.descriptor = new ParameterDescriptor.Builder()
@@ -39,6 +40,7 @@ public class Parameter {
 
         this.parameterContextId = builder.parameterContextId;
         this.provided = builder.provided;
+        this.tags = builder.tags;
 
         this.referencedAssets = builder.referencedAssets;
         if (this.referencedAssets == null || this.referencedAssets.isEmpty()) {
@@ -67,6 +69,13 @@ public class Parameter {
         return parameterContextId;
     }
 
+    /**
+     * @return The list of tags associated with this parameter, never null
+     */
+    public List<ParameterTag> getTags() {
+        return tags;
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) {
@@ -81,12 +90,13 @@ public class Parameter {
         return Objects.equals(descriptor, parameter.descriptor)
                && Objects.equals(value, parameter.value)
                && Objects.equals(parameterContextId, parameter.parameterContextId)
-               && Objects.equals(referencedAssets, parameter.referencedAssets);
+               && Objects.equals(referencedAssets, parameter.referencedAssets)
+               && Objects.equals(tags, parameter.tags);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(descriptor, value);
+        return Objects.hash(descriptor, value, tags);
     }
 
     /**
@@ -105,12 +115,14 @@ public class Parameter {
         private String parameterContextId;
         private boolean provided;
         private List<Asset> referencedAssets = List.of();
+        private List<ParameterTag> tags = List.of();
 
         public Builder fromParameter(final Parameter parameter) {
             descriptor(parameter.getDescriptor());
             this.parameterContextId = parameter.getParameterContextId();
             this.provided = parameter.isProvided();
             this.referencedAssets = parameter.getReferencedAssets() == null ? List.of() : parameter.getReferencedAssets();
+            this.tags = parameter.getTags() == null ? List.of() : parameter.getTags();
             if (this.referencedAssets.isEmpty()) {
                 this.value = parameter.getValue();
             }
@@ -162,6 +174,11 @@ public class Parameter {
                 this.value = null;
             }
 
+            return this;
+        }
+
+        public Builder tags(final List<ParameterTag> tags) {
+            this.tags = tags == null ? List.of() : tags;
             return this;
         }
 
