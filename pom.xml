@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.apache</groupId>
         <artifactId>apache</artifactId>
-        <version>35</version>
+        <version>37</version>
         <relativePath/>
     </parent>
 
@@ -77,14 +77,14 @@
         <minimalJavaBuildVersion>21</minimalJavaBuildVersion>
         <minimalMavenBuildVersion>3.9.12</minimalMavenBuildVersion>
 
-        <checkstyle.version>11.1.0</checkstyle.version>
-        <junit-bom.version>6.0.0</junit-bom.version>
-        <jacoco.version>0.8.13</jacoco.version>
-        <maven-pmd-plugin.version>3.27.0</maven-pmd-plugin.version>
+        <checkstyle.version>13.2.0</checkstyle.version>
+        <junit-bom.version>6.0.3</junit-bom.version>
+        <jacoco.version>0.8.14</jacoco.version>
+        <maven-pmd-plugin.version>3.28.0</maven-pmd-plugin.version>
         <version.maven-checkstyle-plugin>3.6.0</version.maven-checkstyle-plugin>
-        <mockito.version>5.20.0</mockito.version>
-        <pmd.version>7.17.0</pmd.version>
-        <swagger-annotations.version>2.2.38</swagger-annotations.version>
+        <mockito.version>5.21.0</mockito.version>
+        <pmd.version>7.21.0</pmd.version>
+        <swagger-annotations.version>2.2.43</swagger-annotations.version>
     </properties>
 
     <dependencyManagement>
