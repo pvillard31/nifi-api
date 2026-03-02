@@ -28,6 +28,7 @@ public abstract class VersionedConfigurableExtension extends VersionedComponent
 
     private Map<String, String> properties;
     private Map<String, VersionedPropertyDescriptor> propertyDescriptors;
+    private VersionedComponentState componentState;
 
     @Override
     @Schema(description = "The type of the extension component")
@@ -72,6 +73,15 @@ public abstract class VersionedConfigurableExtension extends VersionedComponent
     @Override
     public void setPropertyDescriptors(Map<String, VersionedPropertyDescriptor> propertyDescriptors) {
         this.propertyDescriptors = propertyDescriptors;
+    }
+
+    @Schema(description = "The state of the component, if exported with state")
+    public VersionedComponentState getComponentState() {
+        return componentState;
+    }
+
+    public void setComponentState(final VersionedComponentState componentState) {
+        this.componentState = componentState;
     }
 
 }
