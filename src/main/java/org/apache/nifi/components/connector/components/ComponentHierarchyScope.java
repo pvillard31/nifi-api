@@ -14,31 +14,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.nifi.action;
+
+package org.apache.nifi.components.connector.components;
 
 /**
- * Defines possible components for a given action.
+ * Describes the scope of a component operation within the Process Group hierarchy.
  */
-public enum Component {
+public enum ComponentHierarchyScope {
 
-    Controller,
-    Processor,
-    InputPort,
-    OutputPort,
-    ProcessGroup,
-    RemoteProcessGroup,
-    Funnel,
-    Connection,
-    ControllerService,
-    ReportingTask,
-    FlowAnalysisRule,
-    FlowRegistryClient,
-    ParameterContext,
-    ParameterProvider,
-    AccessPolicy,
-    User,
-    UserGroup,
-    Label,
-    Connector;
+    /**
+     * Interact only with components that are immediately within the Process Group.
+     */
+    IMMEDIATE_GROUP_ONLY,
 
+    /**
+     * Interact with components within the Process Group and all child Process Groups, recursively.
+     */
+    INCLUDE_CHILD_GROUPS;
 }

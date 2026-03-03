@@ -14,31 +14,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.nifi.action;
 
-/**
- * Defines possible components for a given action.
- */
-public enum Component {
+package org.apache.nifi.components.connector.components;
 
-    Controller,
-    Processor,
-    InputPort,
-    OutputPort,
-    ProcessGroup,
-    RemoteProcessGroup,
-    Funnel,
-    Connection,
-    ControllerService,
-    ReportingTask,
-    FlowAnalysisRule,
-    FlowRegistryClient,
-    ParameterContext,
-    ParameterProvider,
-    AccessPolicy,
-    User,
-    UserGroup,
-    Label,
-    Connector;
+public enum FlowContextType {
 
+    /**
+     * The ACTIVE Flow Context represents the version of the flow that able to be started and stopped and run
+     * the dataflow.
+     */
+    ACTIVE,
+
+    /**
+     * The WORKING Flow Context represents the "in process" version of the flow that is being configured. This
+     * version of the flow is not directly started or stopped by the user, but is used to verify configuration,
+     * fetch allowable values, and perform other configuration-related operations.
+     */
+    WORKING;
 }
