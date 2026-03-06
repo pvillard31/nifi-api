@@ -26,7 +26,7 @@ import java.util.Objects;
 public class VersionedComponentState {
 
     private Map<String, String> clusterState;
-    private List<Map<String, String>> localNodeStates;
+    private List<VersionedNodeState> localNodeStates;
 
     @Schema(description = "The cluster-scoped state of the component, or null if not exported")
     public Map<String, String> getClusterState() {
@@ -38,11 +38,11 @@ public class VersionedComponentState {
     }
 
     @Schema(description = "The local-scoped state of the component ordered by node ordinal index, or null if not exported")
-    public List<Map<String, String>> getLocalNodeStates() {
+    public List<VersionedNodeState> getLocalNodeStates() {
         return localNodeStates;
     }
 
-    public void setLocalNodeStates(final List<Map<String, String>> localNodeStates) {
+    public void setLocalNodeStates(final List<VersionedNodeState> localNodeStates) {
         this.localNodeStates = localNodeStates;
     }
 
