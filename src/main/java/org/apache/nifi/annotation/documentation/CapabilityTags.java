@@ -24,7 +24,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * An enclosing annotation that can be used in order to use the {@link CapabilityTag} annotation in a repeated manner.
+ * An enclosing annotation for use with one or more {@link CapabilityTag} annotations
  */
 @Documented
 @Target({ElementType.TYPE})
