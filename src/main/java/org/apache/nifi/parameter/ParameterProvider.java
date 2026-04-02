@@ -90,6 +90,27 @@ public interface ParameterProvider extends ConfigurableComponent {
     List<ParameterGroup> fetchParameters(ConfigurationContext context) throws IOException;
 
     /**
+     * Lists named groups of parameters from an external source, returning only parameter metadata without necessarily resolving
+     * parameter values. This method is intended for use cases such as populating a parameter picker UI, where only the names,
+     * groups, and descriptions of available parameters are needed.
+     *
+     * <p>
+     * The default implementation delegates to {@link #fetchParameters(ConfigurationContext)}, which fetches all parameter values.
+     * Implementations that can enumerate parameter metadata without the cost of fetching values (for example, by querying a
+     * catalog or running a metadata-only listing command) should override this method to provide an optimized implementation.
+     * In such cases, the returned {@link Parameter} objects may have {@code null} values.
+     * </p>
+     *
+     * @param context The <code>ConfigurationContext</code> for the provider
+     * @return A list of Parameter groups containing parameter metadata. Parameter values may be {@code null} if the
+     *         implementation provides metadata without resolving values.
+     * @throws IOException if there is an I/O problem while listing the Parameters
+     */
+    default List<ParameterGroup> listParameters(final ConfigurationContext context) throws IOException {
+        return fetchParameters(context);
+    }
+
+    /**
      * <p>
      * Allows for the migration of an old property configuration to a new configuration. This allows the Parameter Provider to evolve over time,
      * as it allows properties to be renamed, removed, or reconfigured.
